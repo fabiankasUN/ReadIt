@@ -10,8 +10,12 @@
           <option name="url" value="https://github.com/afcruzs/FFMusicApp.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/fabiankasUN/ReadIt.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="D:\MealStats\App" />
+    <option name="cloneParentDir" value="C:\RepositorioTranslator\google\android-vision-master\visionSamples\ocr-codelab\ocr-reader-start" />
   </component>
 </application>
