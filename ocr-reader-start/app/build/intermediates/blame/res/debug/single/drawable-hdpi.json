@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\RepositorioTranslator\\google\\android-vision-master\\visionSamples\\ocr-codelab\\ocr-reader-start\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\icon.png",
+        "source": "C:\\RepositorioTranslator\\google\\android-vision-master\\visionSamples\\ocr-codelab\\ocr-reader-start\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
+    },
+    {
+        "merged": "C:\\RepositorioTranslator\\ReadIt\\ocr-reader-start\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\icon.png",
+        "source": "C:\\RepositorioTranslator\\ReadIt\\ocr-reader-start\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
+    }
+]
