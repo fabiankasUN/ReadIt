@@ -1,16 +1,12 @@
 package Model.Calls;
 
-import android.content.Context;
 import android.util.Log;
 
-import Model.entity.Book;
+
 import Model.entity.Database;
 import Model.entity.Word;
 import Model.utils.Erros;
 
-/**
- * Created by Fabian on 17/12/2017.
- */
 public class WordHandler {
 
     private Database db;

@@ -5,9 +5,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by Fabian on 15/12/2017.
- */
 @Entity(tableName = "Page"
         ,foreignKeys = @ForeignKey(entity = Book.class,parentColumns = "id_book",
                                               childColumns = "id_book" ))

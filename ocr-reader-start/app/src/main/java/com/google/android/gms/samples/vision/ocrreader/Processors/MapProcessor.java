@@ -16,9 +16,7 @@ import java.util.List;
 import Model.entity.Word;
 import Model.utils.Erros;
 
-/**
- * Created by Fabian on 23/12/2017.
- */
+
 public class MapProcessor implements IWordProcessor{
 
     public static final int MIN_UMBRAL = 3;

@@ -3,9 +3,6 @@ package Model.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 
-/**
- * Created by Fabian on 16/12/2017.
- */
 @Entity(tableName = "WordPage",
         primaryKeys = { "id_word", "id_page" },
         foreignKeys = {

@@ -13,9 +13,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by Fabian on 23/12/2017.
- */
+
 public class LineMethodProcessor implements IWordProcessor {
 
     private HashMap<Integer,HashMap<String, Integer>> map;

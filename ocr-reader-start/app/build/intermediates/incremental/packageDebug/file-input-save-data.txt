@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Dec 24 13:03:44 COT 2017
+#Sun Dec 24 13:17:06 COT 2017
 20.base=C\:\\RepositorioTranslator\\ReadIt\\ocr-reader-start\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=C\:\\RepositorioTranslator\\ReadIt\\ocr-reader-start\\app\\build\\intermediates\\res\\resources-debug.ap_
 493.base=C\:\\RepositorioTranslator\\ReadIt\\ocr-reader-start\\app\\build\\intermediates\\res\\resources-debug.ap_

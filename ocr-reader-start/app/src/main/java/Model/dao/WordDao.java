@@ -11,9 +11,6 @@ import java.util.List;
 
 import Model.entity.Word;
 
-/**
- * Created by Fabian on 15/12/2017.
- */
 @Dao
 public interface WordDao {
 

@@ -1,8 +1,5 @@
 package Model.utils;
 
-/**
- * Created by Fabian on 23/12/2017.
- */
 public class Erros {
 
     public static final String ERROR = "Error";

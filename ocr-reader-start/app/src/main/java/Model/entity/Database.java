@@ -9,9 +9,7 @@ import Model.dao.PageDao;
 import Model.dao.WordDao;
 import Model.dao.WordPageDao;
 
-/**
- * Created by Fabian on 14/12/2017.
- */
+
 
 @android.arch.persistence.room.Database(entities = { Book.class, Page.class, Word.class, WordPage.class},
         version = 5)

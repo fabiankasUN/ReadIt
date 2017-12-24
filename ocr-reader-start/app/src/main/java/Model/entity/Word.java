@@ -7,9 +7,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by Fabian on 14/12/2017.
- */
+
 @Entity(tableName = "Word", foreignKeys = @ForeignKey(entity = Book.class,parentColumns = "id_book",
         childColumns = "id_book" )
 , indices = {@Index(value = {"id_word", "id_book"},

@@ -10,9 +10,7 @@ import Model.entity.Page;
 import Model.entity.Word;
 import Model.entity.WordPage;
 
-/**
- * Created by Fabian on 16/12/2017.
- */
+
 @Dao
 public interface WordPageDao {
 

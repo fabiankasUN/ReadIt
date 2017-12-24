@@ -6,9 +6,7 @@ import android.util.Log;
 import Model.entity.Book;
 import Model.entity.Database;
 
-/**
- * Created by Fabian on 17/12/2017.
- */
+
 public class BookHandler {
 
     private Database db;
@@ -32,7 +30,7 @@ public class BookHandler {
                         db.bookDao().insert(book);
                         //Log.d("mydb","inserted book Oliver ");
                     }else{
-                        //Log.d("mydb","the book has already was inserted ");
+                        Log.d("mydb","the book has already was inserted ");
                     }
                     //db.close();
                 }catch (Exception ex){
