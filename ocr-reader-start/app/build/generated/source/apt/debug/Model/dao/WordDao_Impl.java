@@ -1,9 +1,12 @@
 package Model.dao;
 
 import Model.entity.Word;
+import android.arch.lifecycle.ComputableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.db.SupportSQLiteStatement;
 import android.arch.persistence.room.EntityDeletionOrUpdateAdapter;
 import android.arch.persistence.room.EntityInsertionAdapter;
+import android.arch.persistence.room.InvalidationTracker.Observer;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.RoomSQLiteQuery;
 import android.arch.persistence.room.SharedSQLiteStatement;
@@ -241,5 +244,57 @@ public class WordDao_Impl implements WordDao {
       _cursor.close();
       _statement.release();
     }
+  }
+
+  @Override
+  public LiveData<List<Word>> getWordsLiveData() {
+    final String _sql = "SELECT * FROM Word";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    return new ComputableLiveData<List<Word>>() {
+      private Observer _observer;
+
+      @Override
+      protected List<Word> compute() {
+        if (_observer == null) {
+          _observer = new Observer("Word") {
+            @Override
+            public void onInvalidated() {
+              invalidate();
+            }
+          };
+          __db.getInvalidationTracker().addWeakObserver(_observer);
+        }
+        final Cursor _cursor = __db.query(_statement);
+        try {
+          final int _cursorIndexOfIdWord = _cursor.getColumnIndexOrThrow("id_word");
+          final int _cursorIndexOfWord = _cursor.getColumnIndexOrThrow("word");
+          final int _cursorIndexOfAmount = _cursor.getColumnIndexOrThrow("amount");
+          final int _cursorIndexOfIdBook = _cursor.getColumnIndexOrThrow("id_book");
+          final List<Word> _result = new ArrayList<Word>(_cursor.getCount());
+          while(_cursor.moveToNext()) {
+            final Word _item;
+            final String _tmpWord;
+            _tmpWord = _cursor.getString(_cursorIndexOfWord);
+            final int _tmpAmount;
+            _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+            final int _tmpId_book;
+            _tmpId_book = _cursor.getInt(_cursorIndexOfIdBook);
+            _item = new Word(_tmpWord,_tmpAmount,_tmpId_book);
+            final int _tmpIdWord;
+            _tmpIdWord = _cursor.getInt(_cursorIndexOfIdWord);
+            _item.setIdWord(_tmpIdWord);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    }.getLiveData();
   }
 }

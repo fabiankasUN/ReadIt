@@ -20,13 +20,17 @@ import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.google.android.gms.samples.vision.ocrreader.Processors.CountProcessor;
 import com.google.android.gms.samples.vision.ocrreader.Processors.IWordProcessor;
+import com.google.android.gms.samples.vision.ocrreader.Processors.LineMethodProcessor;
 import com.google.android.gms.samples.vision.ocrreader.Processors.MapProcessor;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
@@ -59,20 +63,20 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     private List<Word> allWords;
     private HashMap<String,Integer> mapWords;
 
-    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, Database db, Lifecycle cycle) {
+    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, Database db, AppCompatActivity ac) {
         this.db = db;
         mGraphicOverlay = ocrGraphicOverlay;
-        wordProcessor = new MapProcessor();
+        wordProcessor = new CountProcessor();
         reloadWords();
 
-        //allWords = db.wordDao().getWords();
-
-        /*allWords.observe(cycle.getCurrentState(), new Observer<List<Word>>() {
+        /*db.wordDao().getWordsLiveData().observe(ac, new Observer<List<Word>>() {
             @Override
             public void onChanged(@Nullable List<Word> words) {
-
+                Log.e(Erros.MAP_PROCESSOR, "Events Changed: " + words.size());
+                allWords = words;
             }
         });*/
+
     }
 
     public void reloadWords(){

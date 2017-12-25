@@ -37,4 +37,9 @@ public interface WordDao {
 
     @Query("SELECT * FROM Word where word=:word")
     Word getWordByValue(final String word);
+
+    @Query("SELECT * FROM Word")
+    LiveData<List<Word>> getWordsLiveData();
+
+
 }

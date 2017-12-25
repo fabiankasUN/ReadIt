@@ -12,7 +12,7 @@ import Model.dao.WordPageDao;
 
 
 @android.arch.persistence.room.Database(entities = { Book.class, Page.class, Word.class, WordPage.class},
-        version = 5)
+        version = 6)
 public abstract class Database extends RoomDatabase {
 
     private static Database INSTANCE;

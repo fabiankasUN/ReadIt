@@ -11,13 +11,13 @@ import android.arch.persistence.room.PrimaryKey;
 public class Page {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_page")
+    @ColumnInfo(name = "id_page", index = true)
     private int idPage;
 
     @ColumnInfo(name = "page_number")
     private int pageNumber;
 
-    @ColumnInfo(name = "id_book")
+    @ColumnInfo(name = "id_book", index = true)
     private int id_book;
 
     public Page(int idPage, int pageNumber, int id_book) {

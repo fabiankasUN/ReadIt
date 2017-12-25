@@ -15,7 +15,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Word {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_word")
+    @ColumnInfo(name = "id_word", index = true)
     private int idWord;
 
     @ColumnInfo(name = "word")
@@ -24,7 +24,7 @@ public class Word {
     @ColumnInfo(name = "amount")
     private int amount;
 
-    @ColumnInfo(name = "id_book")
+    @ColumnInfo(name = "id_book", index = true)
     private int id_book;
 
     @Ignore

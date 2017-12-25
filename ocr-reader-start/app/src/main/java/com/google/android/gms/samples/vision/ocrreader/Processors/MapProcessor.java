@@ -80,9 +80,14 @@ public class MapProcessor implements IWordProcessor{
                             }
                         //Log.d("proccess", " line "  + j + " word "+ + k + " pos " +  block.getBoundingBox().toString() + " word " + block.getValue());
                     }
+                else{
+                    Log.e(Erros.MAP_PROCESSOR,"filas : " + id);
+                }
                 id++;
             }
         }
+
+        Log.e(Erros.MAP_PROCESSOR,"filas : " + id);
 
         //print();
     }

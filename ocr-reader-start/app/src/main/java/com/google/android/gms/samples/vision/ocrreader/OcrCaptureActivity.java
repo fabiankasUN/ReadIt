@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,8 +30,10 @@ import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -49,11 +52,14 @@ import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.Calls.BookHandler;
 import Model.Calls.WordHandler;
 import Model.entity.Book;
 import Model.entity.Database;
+import Model.entity.Word;
 import Model.utils.Erros;
 
 /**
@@ -89,6 +95,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     private int id_book = 1;
 
+    private boolean stopped;
+
 
     // A TextToSpeech engine for speaking a String value.
 
@@ -99,7 +107,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.ocr_capture);
-
+        stopped = false;
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 
@@ -131,25 +139,11 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         BookHandler bookDao = new BookHandler(db);
         Book b = new Book(1,"OliverTwist",391);
         bookDao.insertBook(b);
-
-        try{
+        /*try{
             new WordHandler(db).deleteAll();
         }catch (Exception ex){
             Log.d(Erros.ERROR,ex.getMessage());
-        }
-
-
-    }
-
-
-    private class SaveBook extends AsyncTask<Book, Integer, Integer> {
-        protected Integer doInBackground(Book... books) {
-            return 1;
-        }
-        protected void onProgressUpdate(Integer... progress) {
-        }
-        protected void onPostExecute(Long result) {
-        }
+        }*/
     }
 
 
@@ -211,7 +205,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         // TODO: Create the TextRecognizer
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
         // TODO: Set the TextRecognizer's Processor.
-        processor = new OcrDetectorProcessor(mGraphicOverlay,db,getLifecycle());
+        processor = new OcrDetectorProcessor(mGraphicOverlay,db,this);
         textRecognizer.setProcessor(processor);
 
         // TODO: Check if the TextRecognizer is operational.
@@ -248,6 +242,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startCameraSource();
+        stopped = false;
     }
 
     /**
@@ -258,6 +253,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         super.onPause();
         if (mPreview != null) {
             mPreview.stop();
+            stopped = true;
         }
     }
 
@@ -359,45 +355,46 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      */
     private boolean onTap(float rawX, float rawY) {
         // TODO: Speak the text when the user taps on screen.
-
-
-
-
-
-        final Dialog commentDialog = new Dialog(this);
-        commentDialog.setContentView(R.layout.reply);
-        Button okBtn = (Button) commentDialog.findViewById(R.id.ok);
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //do anything you want here before close the dialog
-                EditText text = (EditText)findViewById(R.id.body);
-                WordHandler wordHandler = new WordHandler(db);
-                int count = 0;
-                for( int i =0; i < processor.getSelectedWords().size(); i++ ){
-                    wordHandler.addOrUpdateWord(processor.getSelectedWords().get(i),id_book);
-                    count++;
-                    //Log.d(Erros.MAP_PROCESSOR,processor.getSelectedWords().get(i));
-                }
-                Log.e(Erros.MAP_PROCESSOR,count+"");
-                commentDialog.dismiss();
-                processor.reloadWords();
-                processor.reloadProcessor();
-                //wordHandler.countWords();
-
-            }
-        });
-        Button cancelBtn = (Button) commentDialog.findViewById(R.id.cancel);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                commentDialog.dismiss();
-            }
-        });
-        commentDialog.show();
+        if(!stopped) {
+            new SaveWords().execute(processor.getSelectedWords());
+            onPause();
+        }
+        else{
+            onResume();
+        }
         return false;
     }
+
+    private class SaveWords extends AsyncTask<List<String>, Integer, Integer> {
+        private WordHandler wordHandler;
+
+        public SaveWords(){
+            wordHandler = new WordHandler(db);
+        }
+        protected Integer doInBackground(List<String>... words) {
+
+            int count = 0;
+            for( int i =0; i < words[0].size(); i++ ){
+                Word word = db.wordDao().getWordByValue(words[0].get(i));
+                if( word == null ){
+                    db.wordDao().insert(new Word(words[0].get(i),1,id_book));
+                }else{
+                    db.wordDao().insert(new Word(words[0].get(i),word.getAmount()+1,id_book));
+                }
+                //Log.e(Erros.MAP_PROCESSOR,processor.getSelectedWords().get(i));
+            }
+            Log.e(Erros.MAP_PROCESSOR,count+"");
+            return 0;
+        }
+        protected void onProgressUpdate(Integer... progress) {
+        }
+        protected void onPostExecute(Integer result) {
+            processor.reloadWords();
+            processor.reloadProcessor();
+        }
+    }
+
+
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -405,6 +402,22 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
         }
+
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            //Intent intent = new Intent(OcrCaptureActivity.this, WordFragment.class);
+            //intent.putExtra("map", processor.getMapWords());
+            //intent.putExtra("list", (ArrayList<String>)processor.getSelectedWords());
+            //startActivity(intent);
+            //WordFragment fragment = new WordFragment();
+            //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            //transaction.replace(R.id., fragment);
+            //transaction.commit();
+            //((OcrCaptureActivity) getActivity()).showFragment(new FragmentExample3());
+            //processor.getMapWords();
+            return true;
+        }
+
     }
 
     private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {

@@ -1,5 +1,6 @@
 package Model.entity;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 
@@ -14,7 +15,10 @@ import android.arch.persistence.room.ForeignKey;
                         childColumns = "id_page")
         })
 public class WordPage {
+
+    @ColumnInfo(index = true)
     public final int id_word;
+    @ColumnInfo(index = true)
     public final int id_page;
 
     public WordPage(final int id_word, final int id_page) {

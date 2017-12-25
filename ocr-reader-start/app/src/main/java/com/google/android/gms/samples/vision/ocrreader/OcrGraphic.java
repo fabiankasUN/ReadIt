@@ -141,12 +141,14 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
             Text paragraph = textComponents.get(i);
             for( int j = 0; j < paragraph.getComponents().size(); j++ ){
                 Text line = paragraph.getComponents().get(j);
+                String value = line.getValue().replaceAll("[^a-zA-Z ]","").toLowerCase();
                 float left = translateX(line.getBoundingBox().left);
                 float bottom = translateY(line.getBoundingBox().bottom);
                 sTextPaint.setColor(Color.RED);
                 //Log.d("graph", line.getValue());
-                if(show(line.getValue()))
-                    canvas.drawText(line.getValue(), left, bottom, sTextPaint);
+                if(show(value))
+                    canvas.drawText(value, left, bottom, sTextPaint);
+
             }
         }
 
