@@ -21,6 +21,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.lifecycle.Observer;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -415,6 +417,41 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             //transaction.commit();
             //((OcrCaptureActivity) getActivity()).showFragment(new FragmentExample3());
             //processor.getMapWords();
+
+
+            String cad = "";
+            int count = 0;
+            for( String value: processor.getSelectedWords()){
+                if( !processor.getMapWords().containsKey(value) ) {
+                    cad += value + "\n";
+                    count++;
+                }
+                if( count > 5)
+                    break;
+            }
+
+            try {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, cad);
+                intent.putExtra("key_text_input", "hello");
+                intent.putExtra("key_text_output", "");
+                intent.putExtra("key_language_from", "EN");
+                intent.putExtra("key_language_to", "ES");
+                intent.putExtra("key_suggest_translation", "");
+                intent.putExtra("key_from_floating_window", false);
+                intent.setComponent(new ComponentName(
+                        "com.google.android.apps.translate",
+                        //Change is here
+                        //"com.google.android.apps.translate.HomeActivity"));
+                        "com.google.android.apps.translate.TranslateActivity"));
+                startActivity(intent);
+            } catch (ActivityNotFoundException ee) {
+                // TODO Auto-generated catch block
+                Toast.makeText(getApplication(), "Sorry, No Google Translation Installed",
+                        Toast.LENGTH_SHORT).show();
+            }
+
             return true;
         }
 

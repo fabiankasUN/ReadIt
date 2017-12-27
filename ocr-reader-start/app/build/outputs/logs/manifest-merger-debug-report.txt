@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
 MERGED from [com.android.support:design:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\c915077a17e7357e4522cc874f8421e7\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-11.8.0.aar\463344905daaa176a2a6717d00fa992b\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-ads:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-ads-11.8.0.aar\87d773cc4735a4df66a7fc07ee6a6b9b\AndroidManifest.xml:17:1-25:12
@@ -61,7 +61,7 @@ MERGED from [com.android.support:mediarouter-v7:25.2.0] C:\Users\Fabian\.gradle\
 MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.2.0.aar\1e95a4783733a591aeeaa2cd703a8965\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\a2313d7efc5e31a984c44caa8decabf3\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.2.0.aar\fb389aa28da63b72f7b23dcd21fa1ae1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\ee68a94539c279fbd300d064eebcb0ca\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\fe73cf2e4ef04040eb24675cad98977b\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\ed72555e21e82e5d85939f32b6563672\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.persistence.room:runtime:1.0.0-alpha1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0-alpha1.aar\3faf630dc32e34daf62efc43d9c49b79\AndroidManifest.xml:17:1-26:12
 MERGED from [android.arch.lifecycle:extensions:1.0.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\extensions-1.0.0.aar\8b6548d86701254f97e5c2bd08480615\AndroidManifest.xml:17:1-32:12
@@ -127,20 +127,20 @@ MERGED from [com.google.android.gms:play-services-vision-common-license:11.8.0] 
 MERGED from [com.google.android.gms:play-services-vision-license:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-vision-license-11.8.0.aar\e00da34bc835c645f0d68a183164de63\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-wallet-license:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-wallet-license-11.8.0.aar\e69e4308c2473c8537f458357ba8afe9\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-wearable-license:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-wearable-license-11.8.0.aar\61f10e1cd7e307925e7e14bf8306fb34\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
 	package
 		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:3:5-62
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
-		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
-		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:2:11-69
@@ -155,7 +155,7 @@ ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\Android
 	android:name
 		ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:8:22-62
 application
-ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:10:5-34:19
+ADDED from C:\RepositorioTranslator\ReadIt\ocr-reader-start\app\src\main\AndroidManifest.xml:10:5-35:19
 MERGED from [com.android.support:design:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\c915077a17e7357e4522cc874f8421e7\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\c915077a17e7357e4522cc874f8421e7\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services:11.8.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\play-services-11.8.0.aar\463344905daaa176a2a6717d00fa992b\AndroidManifest.xml:5:5-20
@@ -250,8 +250,8 @@ MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Fabian\.gradle\cach
 MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\a2313d7efc5e31a984c44caa8decabf3\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.2.0.aar\fb389aa28da63b72f7b23dcd21fa1ae1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.2.0.aar\fb389aa28da63b72f7b23dcd21fa1ae1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\ee68a94539c279fbd300d064eebcb0ca\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\ee68a94539c279fbd300d064eebcb0ca\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\fe73cf2e4ef04040eb24675cad98977b\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\fe73cf2e4ef04040eb24675cad98977b\AndroidManifest.xml:9:5-20
 MERGED from [android.arch.lifecycle:extensions:1.0.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\extensions-1.0.0.aar\8b6548d86701254f97e5c2bd08480615\AndroidManifest.xml:24:5-30:19
 MERGED from [android.arch.lifecycle:extensions:1.0.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\extensions-1.0.0.aar\8b6548d86701254f97e5c2bd08480615\AndroidManifest.xml:24:5-30:19
 MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\palette-v7-25.2.0.aar\c6e76fa7a2c0b1919b8612a5079197d3\AndroidManifest.xml:22:5-23:19
@@ -530,8 +530,8 @@ MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Fabian\.gradle\cach
 MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\a2313d7efc5e31a984c44caa8decabf3\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.2.0.aar\fb389aa28da63b72f7b23dcd21fa1ae1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.2.0.aar\fb389aa28da63b72f7b23dcd21fa1ae1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\ee68a94539c279fbd300d064eebcb0ca\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\ee68a94539c279fbd300d064eebcb0ca\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\fe73cf2e4ef04040eb24675cad98977b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\fe73cf2e4ef04040eb24675cad98977b\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\ed72555e21e82e5d85939f32b6563672\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\ed72555e21e82e5d85939f32b6563672\AndroidManifest.xml:20:5-43
 MERGED from [android.arch.persistence.room:runtime:1.0.0-alpha1] C:\Users\Fabian\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0-alpha1.aar\3faf630dc32e34daf62efc43d9c49b79\AndroidManifest.xml:22:5-24:41
