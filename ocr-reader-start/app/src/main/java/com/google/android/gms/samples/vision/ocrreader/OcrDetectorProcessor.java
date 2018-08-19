@@ -119,6 +119,10 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
+    public void restart(){
+        wordProcessor = new CountProcessor();
+        reloadWords();
+    }
     @Override
     public void release() {
         mGraphicOverlay.clear();

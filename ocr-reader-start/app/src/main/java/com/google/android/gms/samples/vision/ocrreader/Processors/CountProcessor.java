@@ -35,6 +35,8 @@ public class CountProcessor implements IWordProcessor{
         }
         return selectedWords;
     }
+
+
     public  void process(Detector.Detections<TextBlock> detections){
         this.detections.clear();
         SparseArray<TextBlock> items = detections.getDetectedItems();
@@ -58,11 +60,11 @@ public class CountProcessor implements IWordProcessor{
                     for( int k = 0; k < line.size(); k++ ){
                         Text block = this.detections.get(i).getComponents().get(j).getComponents().get(k);
                         String value = block.getValue().replaceAll("[^a-zA-Z ]","").toLowerCase();
-                        if( map.containsKey(value)){
-                            map.put(value,map.get(value)+1);
-                        }else{
-                            map.put(value,1);
-                        }
+                            if( map.containsKey(value)){
+                                map.put(value,map.get(value)+1);
+                            }else{
+                                map.put(value,1);
+                            }
                     }
                 }
                 id++;

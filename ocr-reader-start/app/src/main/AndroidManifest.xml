@@ -6,6 +6,7 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".MeaningsActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".DetailMeaningActivity"></activity>
     </application>
 
 </manifest>

@@ -38,6 +38,11 @@ dependencies {
     // not necessary if you are using Support Library 26.1+ or lifecycle:extensions
     implementation "android.arch.lifecycle:extensions:1.0.0"
 
+
+    //compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
     // RxJava support for Room implementation “android.arch.persistence.room:rxjava2:1.0.0-alpha5”
 // Testing support
     //compile "android.arch.persistence.room:rxjava2:1.0.0-alpha5"

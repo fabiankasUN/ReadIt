@@ -15,4 +15,7 @@
     <string name="your_comment">Ingrese el numero de pagina</string>
     <string name="send">Agregar pagina</string>
     <string name="title_activity_list_words">ListWordsActivity</string>
+    <string name="btn_add_word">+</string>
+    <string name="btn_add_all_words">+all</string>
+    <string name="btn_speech">speech</string>
 </resources>
