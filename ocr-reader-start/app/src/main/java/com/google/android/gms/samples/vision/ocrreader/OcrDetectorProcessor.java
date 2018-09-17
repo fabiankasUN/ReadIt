@@ -15,39 +15,27 @@
  */
 package com.google.android.gms.samples.vision.ocrreader;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.content.Context;
+
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.android.gms.samples.vision.ocrreader.Processors.CountProcessor;
 import com.google.android.gms.samples.vision.ocrreader.Processors.IWordProcessor;
-import com.google.android.gms.samples.vision.ocrreader.Processors.LineMethodProcessor;
-import com.google.android.gms.samples.vision.ocrreader.Processors.MapProcessor;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import java.util.HashMap;
 import java.util.List;
-
+import Model.Firebase.Firebase;
 import Model.entity.Database;
-import Model.entity.Word;
-import Model.utils.Erros;
-
+import Model.Firebase.Entities.Word;
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
  * as OcrGraphics.
@@ -60,7 +48,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
     private Database db;
-    private List<Word> allWords;
+    private List<Model.Firebase.Entities.Word> allWords;
     private HashMap<String,Integer> mapWords;
 
     OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, Database db, AppCompatActivity ac) {
@@ -68,15 +56,6 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         mGraphicOverlay = ocrGraphicOverlay;
         wordProcessor = new CountProcessor();
         reloadWords();
-
-        /*db.wordDao().getWordsLiveData().observe(ac, new Observer<List<Word>>() {
-            @Override
-            public void onChanged(@Nullable List<Word> words) {
-                Log.e(Erros.MAP_PROCESSOR, "Events Changed: " + words.size());
-                allWords = words;
-            }
-        });*/
-
     }
 
     public void reloadWords(){
@@ -98,24 +77,33 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
         @Override
         protected List<Word> doInBackground( Void... org0 ) {
-            List<Word> words = db.wordDao().getWords();
-            Log.e(Erros.MAP_PROCESSOR,"Total doBackground " + db.wordDao().countWords());
-            Collections.sort(words, new Comparator<Word>() {
+
+
+            Firebase.Words.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public int compare(Word word, Word word2) {
-                    return word.getAmount() - word2.getAmount();
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    List<Word> words = new ArrayList<>();
+                    for (DataSnapshot child: dataSnapshot.getChildren())
+                        words.add(child.getValue(Word.class));
+                    processor.setAllWords(words);
+                    HashMap<String,Integer> mapWords = new HashMap<>();
+                    for( int i = 0; i < words.size(); i++){
+                        mapWords.put(words.get(i).getWord(),i);
+                    }
+                    processor.setMap(mapWords);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
             return words;
         }
         @Override
         protected void onPostExecute(List<Word> words) {
-            processor.setAllWords(words);
-            HashMap<String,Integer> mapWords = new HashMap<>();
-            for( int i = 0; i < words.size(); i++){
-                mapWords.put(words.get(i).getWord(),i);
-            }
-            processor.setMap(mapWords);
+
         }
     }
 
@@ -149,7 +137,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
-    public void setAllWords(List<Word> words){
+    public void setAllWords(List<Model.Firebase.Entities.Word> words){
         allWords = words;
     }
 

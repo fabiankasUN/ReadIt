@@ -39,27 +39,19 @@ public class Database_Impl extends Database {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate() {
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Book` (`id_book` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `number_pages` INTEGER)");
-        _db.execSQL("CREATE  INDEX `index_Book_id_book`\n"
-                + "ON `Book` (`id_book`)");
+        _db.execSQL("CREATE  INDEX `index_Book_id_book` ON `Book` (`id_book`)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Page` (`id_page` INTEGER PRIMARY KEY AUTOINCREMENT, `page_number` INTEGER, `id_book` INTEGER, FOREIGN KEY(`id_book`) REFERENCES `Book`(`id_book`) ON UPDATE NO ACTION ON DELETE NO ACTION )");
-        _db.execSQL("CREATE  INDEX `index_Page_id_page`\n"
-                + "ON `Page` (`id_page`)");
-        _db.execSQL("CREATE  INDEX `index_Page_id_book`\n"
-                + "ON `Page` (`id_book`)");
+        _db.execSQL("CREATE  INDEX `index_Page_id_page` ON `Page` (`id_page`)");
+        _db.execSQL("CREATE  INDEX `index_Page_id_book` ON `Page` (`id_book`)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Word` (`id_word` INTEGER PRIMARY KEY AUTOINCREMENT, `word` TEXT, `amount` INTEGER, `id_book` INTEGER, FOREIGN KEY(`id_book`) REFERENCES `Book`(`id_book`) ON UPDATE NO ACTION ON DELETE NO ACTION )");
-        _db.execSQL("CREATE UNIQUE INDEX `index_Word_id_word_id_book`\n"
-                + "ON `Word` (`id_word`, `id_book`)");
-        _db.execSQL("CREATE  INDEX `index_Word_id_word`\n"
-                + "ON `Word` (`id_word`)");
-        _db.execSQL("CREATE  INDEX `index_Word_id_book`\n"
-                + "ON `Word` (`id_book`)");
+        _db.execSQL("CREATE UNIQUE INDEX `index_Word_id_word_id_book` ON `Word` (`id_word`, `id_book`)");
+        _db.execSQL("CREATE  INDEX `index_Word_id_word` ON `Word` (`id_word`)");
+        _db.execSQL("CREATE  INDEX `index_Word_id_book` ON `Word` (`id_book`)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `WordPage` (`id_word` INTEGER, `id_page` INTEGER, PRIMARY KEY(`id_word`, `id_page`), FOREIGN KEY(`id_word`) REFERENCES `Word`(`id_word`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`id_page`) REFERENCES `Page`(`id_page`) ON UPDATE NO ACTION ON DELETE NO ACTION )");
-        _db.execSQL("CREATE  INDEX `index_WordPage_id_word`\n"
-                + "ON `WordPage` (`id_word`)");
-        _db.execSQL("CREATE  INDEX `index_WordPage_id_page`\n"
-                + "ON `WordPage` (`id_page`)");
+        _db.execSQL("CREATE  INDEX `index_WordPage_id_word` ON `WordPage` (`id_word`)");
+        _db.execSQL("CREATE  INDEX `index_WordPage_id_page` ON `WordPage` (`id_page`)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b8f34514d17c820e2283c2864b1d95a6\")");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e3abedd43824a53170e340169f43006c\")");
       }
 
       public void dropAllTables(SupportSQLiteDatabase _db) {
@@ -129,7 +121,7 @@ public class Database_Impl extends Database {
                   + " Found:\n" + _existingWordPage);
         }
       }
-    }, "b8f34514d17c820e2283c2864b1d95a6");
+    }, "e3abedd43824a53170e340169f43006c");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .version(6)

@@ -16,14 +16,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import Model.Calls.WordHandler;
+import Model.Firebase.Firebase;
 import Model.entity.Database;
-import Model.entity.Word;
+import Model.Firebase.Entities.Word;
 import Model.services.Yandex.Glosbe.GlosbeApi;
 import Model.services.Yandex.Glosbe.RequestGlosbe;
 import Model.services.Yandex.Yandex.Request;
@@ -203,20 +210,49 @@ public class MeaningsActivity extends AppCompatActivity {
         }
         protected Integer doInBackground(ArrayList<String>... words) {
 
-            int count = 0;
-            for( int i =0; i < words[0].size(); i++ ){
-                Word word = db.wordDao().getWordByValue(words[0].get(i));
-                if( word == null ){
-                    db.wordDao().insert(new Word(words[0].get(i),1,id_book));
-                }else{
-                    db.wordDao().update(new Word(word.getIdWord(),words[0].get(i),word.getAmount()+1,id_book));
-                }
-                count++;
-            }
-            Log.e(Erros.MAP_PROCESSOR,"Words added : " + count+"");
+//            int count = 0;
+//            for( int i =0; i < words[0].size(); i++ ){
+//                Word word = db.wordDao().getWordByValue( words[0].get(i));
+//                if( word == null ){
+//                    db.wordDao().insert(new Word(words[0].get(i),1,id_book));
+//                }else{
+//                    db.wordDao().update(new Word(word.getIdWord(),words[0].get(i),word.getAmount()+1,id_book));
+//                }
+//                count++;
+//            }
+//            Log.e(Erros.MAP_PROCESSOR,"Words added : " + count+"");
+//
+            SaveFirebase(words[0]);
             //Toast.makeText(getBaseContext(),"Words added",Toast.LENGTH_SHORT).show();
             return 0;
         }
+
+        public void SaveFirebase(final ArrayList<String> words){
+
+
+            Firebase.Words.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    GenericTypeIndicator<Map<String, Word>> t = new GenericTypeIndicator<Map<String, Word>>() {};
+                    Map<String, Word> map = dataSnapshot.getValue(t);
+                    if(words!=null)
+                        for (String current: words){
+                            if(map !=null && map.containsKey(current)){
+                                Firebase.Words.child(current).setValue(new Word(current,map.get(current).getAmount() + 1));
+                            }else if(current.length() > 0){
+                                Firebase.Words.child(current).setValue(new Word(current,1));
+                            }
+                        }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
         protected void onProgressUpdate(Integer... progress) {
         }
         protected void onPostExecute(Integer result) {

@@ -26,9 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -54,9 +52,10 @@ import java.util.List;
 
 import Model.Calls.BookHandler;
 import Model.Calls.WordHandler;
+import Model.Firebase.Firebase;
 import Model.entity.Book;
 import Model.entity.Database;
-import Model.entity.Word;
+import Model.Firebase.Entities.Word;
 import Model.services.Yandex.Glosbe.Caller;
 import Model.utils.Erros;
 
@@ -138,11 +137,13 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         BookHandler bookDao = new BookHandler(db);
         Book b = new Book(1,"OliverTwist",391);
         bookDao.insertBook(b);
-        //try{
-        //    new WordHandler(db).deleteAll();
-        //}catch (Exception ex){
-        //    Log.d(Erros.ERROR,ex.getMessage());
-        //}
+
+        //Firebase f = new Firebase();
+        try{
+            new WordHandler(db).deleteAll();
+        }catch (Exception ex){
+            Log.d(Erros.ERROR,ex.getMessage());
+        }
     }
 
 

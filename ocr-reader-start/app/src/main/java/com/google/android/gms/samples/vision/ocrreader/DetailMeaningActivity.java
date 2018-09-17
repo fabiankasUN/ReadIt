@@ -37,8 +37,6 @@ public class DetailMeaningActivity extends AppCompatActivity {
             for( int i = 0; i < listMeanings.size(); i++){
                 mDetailMeanings.add(new DetailMeaning(listMeanings.get(i).getLanguage(),listMeanings.get(i).getText()));
             }
-
-
         RequestGlosbe.Phrase phrase = (RequestGlosbe.Phrase)bundle.get(MeaningsActivity.PHRASE);
         if(phrase!=null )
             mDetailMeanings.add(new DetailMeaning( phrase.getLanguage(),phrase.getText()));

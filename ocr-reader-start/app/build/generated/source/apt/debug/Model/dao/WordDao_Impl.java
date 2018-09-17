@@ -32,7 +32,7 @@ public class WordDao_Impl implements WordDao {
     this.__insertionAdapterOfWord = new EntityInsertionAdapter<Word>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `Word`(`id_word`,`word`,`amount`,`id_book`) VALUES (nullif(?, 0),?,?,?)";
+        return "INSERT OR REPLACE INTO `Word`(`id_word`,`word`,`amount`,`id_book`) VALUES (nullif(?, 0),?,?,?)";
       }
 
       @Override
