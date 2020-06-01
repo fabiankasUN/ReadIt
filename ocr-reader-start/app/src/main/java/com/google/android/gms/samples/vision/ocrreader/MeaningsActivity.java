@@ -33,6 +33,8 @@ import Model.entity.Database;
 import Model.Firebase.Entities.Word;
 import Model.services.Yandex.Glosbe.GlosbeApi;
 import Model.services.Yandex.Glosbe.RequestGlosbe;
+import Model.services.Yandex.WordsApi.RequestWordsApi;
+import Model.services.Yandex.WordsApi.WordsApi;
 import Model.services.Yandex.Yandex.Request;
 import Model.services.Yandex.Yandex.YandexApi;
 import Model.utils.Erros;
@@ -56,6 +58,7 @@ public class MeaningsActivity extends AppCompatActivity {
 
     private YandexApi yandexApi;
     private GlosbeApi glosbeApi;
+    private WordsApi wordsApi;
 
     private String spokenText;
     private boolean isSpoken;
@@ -101,6 +104,7 @@ public class MeaningsActivity extends AppCompatActivity {
 
         glosbeApi = GlosbeApi.retrofit.create(GlosbeApi.class);
         yandexApi = YandexApi.retrofit.create(YandexApi.class);
+        wordsApi = WordsApi.retrofit.create(WordsApi.class);
 
     }
 
@@ -277,6 +281,22 @@ public class MeaningsActivity extends AppCompatActivity {
 
         final Meaning item = mAdapter.getItem(position);;
 
+        Call<RequestWordsApi> callWordsApi = wordsApi.getWord(item.getWord());
+        callWordsApi.enqueue(
+                new Callback<RequestWordsApi>() {
+                    @Override
+                    public void onResponse(Call<RequestWordsApi> call, Response<RequestWordsApi> response) {
+                        final RequestWordsApi request = response.body();
+                        System.out.println(request.getPronunciation().all);
+                    }
+
+                    @Override
+                    public void onFailure(Call<RequestWordsApi> call, Throwable t) {
+
+                    }
+                }
+        );
+
 
         Call<RequestGlosbe> call = glosbeApi.translate("en"
                 ,"es",item.getWord(),"true","json", "true");
@@ -321,7 +341,7 @@ public class MeaningsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RequestGlosbe> call, Throwable t) {
-
+                Toast.makeText(getBaseContext(),"Error glosbe",Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -22,6 +22,7 @@ public class Firebase {
 
     //public static String TAG = "error";
     public Firebase(){
+
     }
 
 //    public DatabaseReference getUsers(){
